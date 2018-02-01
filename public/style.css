@@ -4,10 +4,9 @@
 
 #board {
   margin: 0 auto; }
-  #board tr {
-    margin-bottom: 20px;
-    max-width: 300px; }
   #board td {
+    border: 1px solid black;
+    margin-right: 10px;
     background-color: #bbbbff;
     width: 100px;
     height: 100px;
@@ -16,7 +15,8 @@
     font-size: 32px; }
     #board td:nth-of-type(3n) {
       color: red; }
-      #board td:nth-of-type(3n)::after {
-        margin-right: 20px; }
+    #board td:hover {
+      background-color: yellow;
+      cursor: pointer; }
 
 /*# sourceMappingURL=style.css.map */

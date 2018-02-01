@@ -23,7 +23,9 @@ class Row extends Component {
     
     render() {
         return (
-            this.createRow()   
+            <tr>
+                {this.createRow()}   
+            </tr>
         );
     }
 }
