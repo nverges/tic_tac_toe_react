@@ -4,16 +4,18 @@ import ReactDOM from "react-dom";
 
 // Components
 import Jumbotron from './Jumbotron';
+import Board from './Board/Board';
 
 class Main extends Component {
 
-        render() {
-            return (
-                <div>
-                    <Jumbotron />
-                </div>
-            )
-        }
+    render() {
+        return (
+            <div>
+                <Jumbotron />
+                <Board />
+            </div>
+        )
+    }
 
 }
 

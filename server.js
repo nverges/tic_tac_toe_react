@@ -2,10 +2,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 
 // Require History Schema
-const Article = require("./models/Article.js");
+// const Article = require("./models/Article.js");
 
 ///////////////// Initialize Express /////////////////
 const app = express();
@@ -33,7 +33,7 @@ app.use(router);
 
 
 // Requiring our models for syncing
-var db = require("./models");
+// var db = require("./models");
 
 // // Listener
 // app.listen(PORT, function() {
@@ -41,8 +41,12 @@ var db = require("./models");
 // });
   
 
-db.sequelize.sync({ force: false }).then(function() {
-    app.listen(PORT, function() {
-        console.log("App listening on PORT " + PORT);
-    });
+// db.sequelize.sync({ force: false }).then(function() {
+//     app.listen(PORT, function() {
+//         console.log("App listening on PORT " + PORT);
+//     });
+// });
+
+app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
 });

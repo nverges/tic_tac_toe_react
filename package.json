@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "concurrently \"mysql.server start \" \"webpack -w\" \"sass --watch public/scss/style.scss:public/style.css\" \"nodemon server\""
+        "dev": "concurrently \"sass --watch public/scss/style.scss:public/style.css\" \"webpack -w\" \"nodemon server\""
     },
     "repository": {
         "type": "git",
