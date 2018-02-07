@@ -15,7 +15,7 @@ class Row extends Component {
         return (
             rows.map(function(name, index) {
                 return (
-                    <tr id={`${index + 1}`} key={`${index + 1}`}>{index + 1}</tr>
+                    <tr id={`${index + 1}`} key={`${index}`}>{index + 1}</tr>
                 )
             })
         )

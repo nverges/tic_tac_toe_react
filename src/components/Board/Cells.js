@@ -5,6 +5,10 @@ class Cells extends Component {
         super(props);
     }
 
+    handleClick() {
+        console.log('here');
+    }
+
     renderCells() {
 
         // initialize empty array of cells
@@ -18,7 +22,12 @@ class Cells extends Component {
         return (
             cells.map(function (name, index) {
                 return (
-                    <td id={`${index + 1}`} key={`${index + 1}`}>{index + 1}</td>
+                    <td 
+                    id={`${index + 1}`} 
+                    key={`${index}`}
+                    onClick={this.handleClick()}
+                    >
+                    {index + 1}</td>
                 )
             })
         )
