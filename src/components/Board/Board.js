@@ -21,7 +21,7 @@ class Board extends Component {
                 8: '',
                 9: ''
             },
-            currentPlayer: 'X'
+            playerX: true,
         }
 
         // this.click = this.click.bind(this);
@@ -30,13 +30,14 @@ class Board extends Component {
 
     // componentDidMount() {
     //     console.log('tic, tac, go!');
+    //     // this.checkIfFull();
+    //     this.endGame();
     // }
 
     // endGame() {
     //     if (this.checkIfFull() === true) {
     //         alert('WINNNNN!');
     //     }
-    //     return;
     // }
 
     checkIfFull() {
@@ -69,24 +70,26 @@ class Board extends Component {
         return full;
     }
 
-    togglePlayer() {
-        if (this.state.currentPlayer === 'X') {
-            return 'O';
-        } else {
-            return 'X';
-        }
-        console.log(this.state.currentPlayer);
-    }
+    // togglePlayer() {
+    //     if (this.state.currentPlayer === 'X') {
+    //         return 'O';
+    //     } else {
+    //         return 'X';
+    //     }
+    //     console.log(this.state.currentPlayer);
+    // }
 
     handleClick(event) {
         this.checkIfFull();
-        this.togglePlayer();
+        // this.togglePlayer();
         let currentValues = this.state.values;
         let newValue = event.target.value;
-        let newObj = update(currentValues, { $merge: { [newValue]: newValue } });
+        let nextPlayer = this.state.playerX ? 'X' : 'O'
+        let newObj = update(currentValues, { $merge: { [newValue]: nextPlayer } });
 
             this.setState({
-                values: newObj
+                values: newObj,
+                playerX: !this.state.playerX
             })
 
         // logs 
