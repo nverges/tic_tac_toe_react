@@ -79,6 +79,15 @@ class Board extends Component {
     //     console.log(this.state.currentPlayer);
     // }
 
+    squareIsEmpty(i) {
+        let empty = true;
+
+        if (this.state.values[i] == '') {
+            empty = false;
+        }
+        return empty;
+    }
+
     handleClick(event) {
         this.checkIfFull();
         // this.togglePlayer();
@@ -87,17 +96,20 @@ class Board extends Component {
         let nextPlayer = this.state.playerX ? 'X' : 'O'
         let newObj = update(currentValues, { $merge: { [newValue]: nextPlayer } });
 
+        if (!this.squareIsEmpty(newValue)) {
+
             this.setState({
                 values: newObj,
                 playerX: !this.state.playerX
             })
+        };
 
         // logs 
-        console.log('-------------')
-        console.log('PREV STATE')
-        console.log(currentValues);
-        console.log('NEW STATE');
-        console.log(newObj);
+        // console.log('-------------')
+        // console.log('PREV STATE')
+        // console.log(currentValues);
+        // console.log('NEW STATE');
+        // console.log(newObj);
     }
 
     renderCell(i) {
@@ -112,9 +124,20 @@ class Board extends Component {
         )
     }
 
+    switchPlayer() {
+        if (!this.state.playerX) {
+            return 'O';
+        } else {
+            return 'X'
+        }
+    }
+
     render() {
+        const nextPlayer =  this.switchPlayer(); 
+
         return (
             <div id='board'>
+                <div>Next Player: {nextPlayer} </div>
                 <div className='row'>
                     {this.renderCell([1])}
                     {this.renderCell([2])}
