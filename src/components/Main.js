@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 // Components
 import Jumbotron from './Jumbotron';
 import Board from './Board/Board';
-import Game from './Board/Game';
+// import Game from './Board/Game';
 
 class Main extends Component {
 

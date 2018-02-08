@@ -15,8 +15,6 @@
     text-align: center;
     cursor: pointer;
     font-size: 32px; }
-    #board button:nth-of-type(3n) {
-      color: red; }
     #board button:hover {
       background-color: yellow;
       cursor: pointer; }
