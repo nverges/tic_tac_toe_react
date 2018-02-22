@@ -3,7 +3,8 @@
   text-align: center; }
 
 #board {
-  margin-left: 500px; }
+  margin-left: 500px;
+  margin-bottom: 50px; }
   #board .row {
     margin-bottom: 10px; }
   #board button {
@@ -18,5 +19,9 @@
     #board button:hover {
       background-color: yellow;
       cursor: pointer; }
+
+.nextPlayer {
+  text-align: center;
+  font-size: 24px; }
 
 /*# sourceMappingURL=style.css.map */

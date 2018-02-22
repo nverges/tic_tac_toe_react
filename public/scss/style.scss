@@ -5,6 +5,7 @@
 
 #board {
     margin-left: 500px;
+    margin-bottom: 50px;
     .row {
         margin-bottom: 10px;
     }
@@ -25,6 +26,11 @@
             cursor: pointer;
         }
     }
+}
+
+.nextPlayer {
+    text-align: center;
+    font-size: 24px;
 }
 
 // #board {

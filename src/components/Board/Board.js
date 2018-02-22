@@ -22,23 +22,33 @@ class Board extends Component {
                 9: ''
             },
             playerX: true,
+            winningConditions: [
+                // Horizontal possibilities
+                [1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9],
+                // Vertical possibilities
+                [1, 4, 7],
+                [2, 5, 8],
+                [3, 6, 9],
+                // Diagonal possibilities
+                [1, 5, 9],
+                [3, 5, 7]
+            ],
         }
-
-        // this.click = this.click.bind(this);
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    // componentDidMount() {
-    //     console.log('tic, tac, go!');
-    //     // this.checkIfFull();
-    //     this.endGame();
-    // }
+    componentDidMount() {
+        console.log('tic, tac, go!');
+        // this.checkIfFull();
+        // this.endGame();
+    }
 
-    // endGame() {
-    //     if (this.checkIfFull() === true) {
-    //         alert('WINNNNN!');
-    //     }
-    // }
+    endGame() {
+        if (!this.checkIfFull()) {
+            console.log('win!');
+        }
+    }
 
     checkIfFull() {
         let full = true;
@@ -65,19 +75,9 @@ class Board extends Component {
             
             full = false;
         }
-
-        console.log(full);
+        console.log(`All squares are filled: ${full}`);
         return full;
     }
-
-    // togglePlayer() {
-    //     if (this.state.currentPlayer === 'X') {
-    //         return 'O';
-    //     } else {
-    //         return 'X';
-    //     }
-    //     console.log(this.state.currentPlayer);
-    // }
 
     squareIsEmpty(i) {
         let empty = true;
@@ -90,10 +90,10 @@ class Board extends Component {
 
     handleClick(event) {
         this.checkIfFull();
-        // this.togglePlayer();
+
         let currentValues = this.state.values;
         let newValue = event.target.value;
-        let nextPlayer = this.state.playerX ? 'X' : 'O'
+        let nextPlayer = this.state.playerX ? 'X' : 'O';
         let newObj = update(currentValues, { $merge: { [newValue]: nextPlayer } });
 
         if (!this.squareIsEmpty(newValue)) {
@@ -104,9 +104,13 @@ class Board extends Component {
             })
         };
 
+        if (this.didWin(newValue)) {
+            console.log('yeaaaaaaaauhhhhhhh');
+        }
+
         // logs 
-        // console.log('-------------')
-        // console.log('PREV STATE')
+        // console.log('-------------');
+        // console.log('PREV STATE');
         // console.log(currentValues);
         // console.log('NEW STATE');
         // console.log(newObj);
@@ -116,7 +120,7 @@ class Board extends Component {
         return (
             <button
                 id={i}
-                onClick={this.handleClick}
+                onClick={this.handleClick.bind(this)}
                 value={i}
                 >
             {this.state.values[i]}
@@ -132,28 +136,62 @@ class Board extends Component {
         }
     }
 
+    // Confirmed Win
+    didWin(currentPlayer) {
+
+        // Initialize 'won' to false
+        var won = false;
+
+        // Loops through array of winning conditions
+        for (let i = 0; i < this.state.winningConditions.length; i++) {
+
+            // grab index of each winning condition array
+            var index1 = this.state.winningConditions[i][0]; //1 // 4
+            var index2 = this.state.winningConditions[i][1]; //2 // 5
+            var index3 = this.state.winningConditions[i][2]; //3
+
+            // 
+            var winningSpot1 = this.state.values[index1] // x or o
+            var winningSpot2 = this.state.values[index2] // x or o
+            var winningSpot3 = this.state.values[index3] // x or o
+
+            // if 3 values meet a winning condition....
+            if (currentPlayer === winningSpot1 && currentPlayer === winningSpot2 && currentPlayer === winningSpot3) {
+
+                // then WIN!
+                won = true;
+                console.log('WOOOOOOOOOOOOOOOOOOOOOT')
+            }
+        }
+
+        // false by default
+        return won;
+    }
+
     render() {
         const nextPlayer =  this.switchPlayer(); 
 
         return (
-            <div id='board'>
-                <div>Next Player: {nextPlayer} </div>
-                <div className='row'>
-                    {this.renderCell([1])}
-                    {this.renderCell([2])}
-                    {this.renderCell([3])}
+            <div>
+            <p className='nextPlayer'>Next Player: {nextPlayer} </p>
+                <div id='board'>
+                    <div className='row'>
+                        {this.renderCell([1])}
+                        {this.renderCell([2])}
+                        {this.renderCell([3])}
+                    </div>
+                    <div className='row'>
+                        {this.renderCell([4])}
+                        {this.renderCell([5])}
+                        {this.renderCell([6])}
+                    </div>
+                    <div className='row'>
+                        {this.renderCell([7])}
+                        {this.renderCell([8])}
+                        {this.renderCell([9])}
+                    </div>
                 </div>
-                <div className='row'>
-                    {this.renderCell([4])}
-                    {this.renderCell([5])}
-                    {this.renderCell([6])}
-                </div>
-                <div className='row'>
-                    {this.renderCell([7])}
-                    {this.renderCell([8])}
-                    {this.renderCell([9])}
-                </div>
-            </div>
+            </div> 
         );
     }
 }
